@@ -1,0 +1,15 @@
+{% extends 'layouts/base.html.twig' %}
+
+{% block title "Edit Target #"~ target.id %}
+
+{% block body %}
+
+  <div class="row">
+    <div class="col-md-6 mx-auto">
+    
+      <h1 class="mt-4 mb-4">Edit Target #{{target.id}}</h1>
+      {{ include('target/_form.html.twig', { submitButtonText: 'Update Target'}) }}  
+    </div>
+  </div>
+  
+{% endblock body %}
