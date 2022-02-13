@@ -1,0 +1,31 @@
+{% extends "layouts/base.html.twig" %}
+{% block title 'Hideouts Types' %}
+
+{% block body %}
+  <div class="container text-center">
+   <div class="col-12 mx-auto">
+    <h1 class="mt-4 text-center">Hideouts Types</h1>
+
+    <table class="mt-5 table table-hover text-center">
+    <thead>
+        <tr>
+        <th scope="col">Id</th>
+        <th scope="col">Type</th>
+        <th scope="col">Info</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for hideout_type in hideouts_type %}
+        <tr class="table-primary">
+        <td>{{hideout_type.id}}</td>
+        <td>{{hideout_type.name}}</td>
+        <td><a href="{{ path('app_hideout_type_show', {id: hideout_type.id})}}"<i class="btn btn-dark fa-solid fa-plus rounded"></i></a></td>
+        </tr>
+    {% endfor %}
+    </tbody>
+       
+    </table>
+      <a href="{{ path('app_hideout_type_create')}}" class="btn rounded btn-info">Add Types</a></td>
+   </div>
+  </div>
+{% endblock %}
