@@ -5,6 +5,7 @@ namespace App\Form;
 use App\Entity\Contact;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Vich\UploaderBundle\Form\Type\VichImageType;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -24,6 +25,12 @@ class ContactType extends AbstractType
                 new NotBlank(['message'=> 'Please enter a code name.'])
             ]
             ])
+        ->add('imageFile',VichImageType::class,[
+            'label' => 'Image (JPG or PNG file)',
+            'required' => false,
+            'download_uri' => false,
+            'imagine_pattern' => 'squared_thumbnail_small'
+        ]) 
          
             ;
 

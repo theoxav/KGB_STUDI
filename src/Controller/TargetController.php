@@ -69,7 +69,7 @@ class TargetController extends AbstractController
 
             return $this->redirectToRoute('app_target');
         }
-        return $this->renderForm('contact/edit.html.twig',[
+        return $this->renderForm('target/edit.html.twig',[
             'target' => $target,
             'form'=>$form
         ]);

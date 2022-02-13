@@ -4,10 +4,10 @@
 {% block body %}
   <div class="container">
       <div class="mt-4 col-md-12 mx-auto card border-dark rounded" style="max-width: 18rem;">
-   <img src="" alt=""/>
+   <img src="{{ (agent.imageName ? vich_uploader_asset(agent) : asset('img/profildefault.webp')) | imagine_filter('squared_thumbnail_medium') }}" alt="{{ agent.fullName }}" class=" w-100"/>
   <div class="card-body">
     <h4 class="card-title">{{ agent.fullName }}</h4>
-    <h5 class="mb-4 text-muted"> {{agent.codeName}}</h5 <br> 
+    <h5 class="mb-4 text-muted"> {{agent.codeName}}</h5> <br> 
         <p>Birthday : {{agent.birthday|date('d/m/Y')}} <br>
         Specialities : 
           <br>

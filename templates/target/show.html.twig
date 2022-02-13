@@ -4,7 +4,7 @@
 {% block body %}
   <div class="container">
       <div class="mt-4 col-md-12 mx-auto card border-dark rounded" style="max-width: 18rem;">
-   <img src="" alt=""/>
+   <img src="{{ (target.imageName ? vich_uploader_asset(target) : asset('img/profildefault.webp')) | imagine_filter('squared_thumbnail_medium') }}" alt="{{ target.fullName }}" class=" w-100"/>
   <div class="card-body">
     <h4 class="card-title">{{ target.fullName }}</h4>
     <h5 class="mb-4 text-muted"> {{target.alias}}</h5> 

@@ -8,6 +8,7 @@ use App\Repository\TargetRepository;
 
 #[ORM\Entity(repositoryClass: TargetRepository::class)]
 #[ORM\HasLifecycleCallbacks]
+
 class Target extends Person
 {
     use Timestampable;
