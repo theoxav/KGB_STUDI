@@ -1,0 +1,32 @@
+
+{% extends "layouts/base.html.twig" %}
+{% block title 'Skills' %}
+
+{% block body %}
+  <div class="container text-center">
+   <div class="col-12 mx-auto">
+    <h1 class="mt-4 text-center">Skills</h1>
+
+    <table class="mt-5 table table-hover text-center">
+    <thead>
+        <tr>
+        <th scope="col">Id</th>
+        <th scope="col">Name</th>
+        <th scope="col">Info</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for skill in skills %}
+        <tr class="table-primary">
+        <td>{{skill.id}}</td>
+        <td>{{skill.name}}</td>
+        <td><a href="{{ path('app_skill_show', {id: skill.id})}}"<i class="btn btn-dark fa-solid fa-plus rounded"></i></a></td>
+        </tr>
+    {% endfor %}
+    </tbody>
+       
+    </table>
+      <a href="{{ path('app_skill_create')}}" class="btn rounded btn-info">Add Skill</a></td>
+   </div>
+  </div>
+{% endblock %}
