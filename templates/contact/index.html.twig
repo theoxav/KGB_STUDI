@@ -1,0 +1,31 @@
+{% extends "layouts/base.html.twig" %}
+{% block title 'Contacts' %}
+
+{% block body %}
+  <div class="container text-center">
+   <div class="col-12 mx-auto">
+    <h1 class="mt-4 text-center">Our Contacts</h1>
+
+    <table class="mt-5 table table-hover text-center">
+    <thead>
+        <tr>
+        <th scope="col">FirstName</th>
+        <th scope="col">LastName</th>
+        <th scope="col">Infos</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for contact in contacts %}
+        <tr class="table-primary">
+        <td>{{contact.firstName}}</td>
+        <td>{{contact.lastName}}</td>
+        <td><a href="{{ path('app_contact_show', {id: contact.id})}}"<i class="btn btn-dark fa-solid fa-plus rounded"></i></a></td>
+        </tr>
+    {% endfor %}
+    </tbody>
+       
+    </table>
+      <a href="{{ path('app_contact_create')}}" class="btn rounded btn-info">Add Contact</a></td>
+   </div>
+  </div>
+{% endblock %}
