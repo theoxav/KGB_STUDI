@@ -3,15 +3,14 @@
 namespace App\Entity;
 
 use App\Entity\Traits\Timestampable;
-use App\Repository\CountryRepository;
+use App\Repository\HideoutTypeRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Validator\Constraints as Assert;
 
-#[ORM\Entity(repositoryClass: CountryRepository::class)]
+#[ORM\Entity(repositoryClass: HideoutTypeRepository::class)]
 #[ORM\HasLifecycleCallbacks]
-class Country
+class HideoutType
 {
     use Timestampable;
 
@@ -21,10 +20,9 @@ class Country
     private $id;
 
     #[ORM\Column(type: 'string', length: 255)]
-    #[Assert\NotBlank()]
     private $name;
 
-    #[ORM\OneToMany(mappedBy: 'country', targetEntity: Hideout::class, orphanRemoval: true, cascade:['persist'])]
+    #[ORM\OneToMany(mappedBy: 'type', targetEntity: Hideout::class, orphanRemoval: true, cascade:['persist'])]
     private $hideouts;
 
     public function __construct()
@@ -61,7 +59,7 @@ class Country
     {
         if (!$this->hideouts->contains($hideout)) {
             $this->hideouts[] = $hideout;
-            $hideout->setCountry($this);
+            $hideout->setType($this);
         }
 
         return $this;
@@ -71,8 +69,8 @@ class Country
     {
         if ($this->hideouts->removeElement($hideout)) {
             // set the owning side to null (unless already changed)
-            if ($hideout->getCountry() === $this) {
-                $hideout->setCountry(null);
+            if ($hideout->getType() === $this) {
+                $hideout->setType(null);
             }
         }
 
