@@ -16,9 +16,13 @@ class Person
 
     #[ORM\Column(type: 'date')]
     protected $birthday;
+    
+    #[ORM\Column(type: 'string', length: 255)]
+    protected $nationality;
 
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
     protected $imageName;
+
 
     public function getId(): ?int
     {
@@ -66,6 +70,18 @@ class Person
         return $this;
     }
 
+    public function getNationality(): ?string
+    {
+        return $this->nationality;
+    }
+
+    public function setNationality(string $nationality): self
+    {
+        $this->nationality = $nationality;
+
+        return $this;
+    }
+
     public function getImageName(): ?string
     {
         return $this->imageName;
@@ -77,4 +93,6 @@ class Person
 
         return $this;
     }
+
+  
 }
