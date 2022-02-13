@@ -8,10 +8,15 @@
   <div class="card-body">
     <h4 class="card-title">{{ agent.fullName }}</h4>
     <h5 class="mb-4 text-muted"> {{agent.codeName}}</h5> <br> 
-        <p>Birthday : {{agent.birthday|date('d/m/Y')}} <br>
-        Specialities : 
-          <br>
-        Nationality : {{agent.nationality}}
+        <p><span class=""> Birthday :</span> {{agent.birthday|date('d/m/Y')}} <br>
+       <p><span class="" > Nationality :</span> {{agent.nationality}} </p>
+       <p><span class=""> 
+         Specialities : {% for skills in agent.skills %}
+                           <li>{{skills.name}}</li></span>
+                          {% endfor %}
+        </p>  
+       
+            
      </p>
   
   <div class="ms-3">

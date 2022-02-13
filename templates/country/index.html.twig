@@ -1,10 +1,10 @@
 {% extends "layouts/base.html.twig" %}
-{% block title 'Skills' %}
+{% block title 'Countries' %}
 
 {% block body %}
   <div class="container text-center">
    <div class="col-12 mx-auto">
-    <h1 class="mt-4 text-center">Skills</h1>
+    <h1 class="mt-4 text-center">Countries</h1>
 
     <table class="mt-5 table table-hover text-center">
     <thead>
@@ -15,17 +15,17 @@
         </tr>
     </thead>
     <tbody>
-    {% for skill in skills %}
+    {% for country in countries %}
         <tr class="table-primary">
-        <td>{{skill.id}}</td>
-        <td>{{skill.name}}</td>
-        <td><a href="{{ path('app_skill_show', {id: skill.id})}}"<i class="btn btn-dark fa-solid fa-plus rounded"></i></a></td>
+        <td>{{country.id}}</td>
+        <td>{{country.name}}</td>
+        <td><a href="{{ path('app_country_show', {id: country.id})}}"<i class="btn btn-dark fa-solid fa-plus rounded"></i></a></td>
         </tr>
     {% endfor %}
     </tbody>
        
     </table>
-      <a href="{{ path('app_skill_create')}}" class="btn rounded btn-info">Add Skill</a></td>
+      <a href="{{ path('app_country_create')}}" class="btn rounded btn-info">Add Country</a></td>
    </div>
   </div>
 {% endblock %}

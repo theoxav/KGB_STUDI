@@ -1,0 +1,15 @@
+{% extends 'layouts/base.html.twig' %}
+
+{% block title "Edit Country #"~ country.id %}
+
+{% block body %}
+
+  <div class="row">
+    <div class="col-md-6 mx-auto">
+    
+      <h1 class="mt-4 mb-4">Edit Country #{{country.id}}</h1>
+      {{ include('country/_form.html.twig', { submitButtonText: 'Update Country'}) }}  
+    </div>
+  </div>
+  
+{% endblock body %}

@@ -2,15 +2,14 @@
 
 namespace App\Entity;
 
-use Doctrine\ORM\Mapping as ORM;
 use App\Entity\Traits\Timestampable;
-use App\Repository\TargetRepository;
+use App\Repository\CountryRepository;
+use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
-#[ORM\Entity(repositoryClass: TargetRepository::class)]
+#[ORM\Entity(repositoryClass: CountryRepository::class)]
 #[ORM\HasLifecycleCallbacks]
-
-class Target extends Person
+class Country
 {
     use Timestampable;
 
@@ -21,21 +20,21 @@ class Target extends Person
 
     #[ORM\Column(type: 'string', length: 255)]
     #[Assert\NotBlank()]
-    private $alias;
+    private $name;
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getAlias(): ?string
+    public function getName(): ?string
     {
-        return $this->alias;
+        return $this->name;
     }
 
-    public function setAlias(string $alias): self
+    public function setName(string $name): self
     {
-        $this->alias = $alias;
+        $this->name = $name;
 
         return $this;
     }

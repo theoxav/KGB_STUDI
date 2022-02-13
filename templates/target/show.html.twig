@@ -8,11 +8,9 @@
   <div class="card-body">
     <h4 class="card-title">{{ target.fullName }}</h4>
     <h5 class="mb-4 text-muted"> {{target.alias}}</h5> 
-        <p>Birthday : {{target.birthday|date('d/m/Y')}} <br>
-        Specialities : 
-          <br>
-        Nationality : {{target.nationality}}
-     </p>
+         <p><span class=""> Birthday :</span> {{target.birthday|date('d/m/Y')}} <br>
+       <p><span class="" > Nationality :</span> {{target.nationality}} </p>
+     
   
   <div class="ms-3">
     <a href="{{ path('app_target')}}" class="btn btn-sm btn-primary">Go Back</a>

@@ -21,6 +21,7 @@ class Agent extends Person
     private $id;
 
     #[ORM\Column(type: 'string', length: 255)]
+    #[Assert\NotBlank()]
     private $codeName;
 
     #[ORM\ManyToMany(targetEntity: Skill::class, inversedBy: 'agents', cascade:['persist'])]
