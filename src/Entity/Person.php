@@ -3,21 +3,29 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\MappedSuperclass()]
 class Person
 {
     
-    #[ORM\Column(type: 'string', length: 255)]
+    #[ORM\Column(type: 'string', length: 50)]
+    #[Assert\NotBlank(message:"please enter a firstName")]
+    #[Assert\Length(min:4, max:50)]
     protected $firstName;
 
-    #[ORM\Column(type: 'string', length: 255)]
+    #[ORM\Column(type: 'string', length: 50)]
+    #[Assert\NotBlank(message:"please enter a lastName")]
+    #[Assert\Length(min:4, max:50)]
     protected $lastName;
 
     #[ORM\Column(type: 'date')]
+    #[Assert\NotBlank()]
     protected $birthday;
     
-    #[ORM\Column(type: 'string', length: 255)]
+    #[ORM\Column(type: 'string', length: 50)]
+    #[Assert\NotBlank(message:"please enter a nationality")]
+    #[Assert\Length(min:4, max:50)]
     protected $nationality;
 
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
