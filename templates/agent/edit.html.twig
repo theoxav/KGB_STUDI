@@ -1,0 +1,15 @@
+{% extends 'layouts/base.html.twig' %}
+
+{% block title "Edit Agent #"~ agent.id %}
+
+{% block body %}
+
+  <div class="row">
+    <div class="col-md-6 mx-auto">
+    
+      <h1 class="mt-4 mb-4">Edit Agent #{{agent.id}}</h1>
+      {{ include('agent/_form.html.twig', { submitButtonText: 'Update Agent'}) }}  
+    </div>
+  </div>
+  
+{% endblock body %}
