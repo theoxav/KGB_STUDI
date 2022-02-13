@@ -1,0 +1,25 @@
+{% extends "layouts/base.html.twig" %}
+{% block title %}{{ hideout.type.name }}{% endblock %}
+
+{% block body %}
+  <div class="container">
+      <div class="mt-4 col-md-12 mx-auto card border-dark rounded" style="max-width: 18rem;">
+   <img src="{{ asset('img/house.jpg')}}" alt="{{ hideout.type.name }}" class=" w-100"/>
+  <div class="card-body">
+    <h4 class="card-title text-center">{{ hideout.type.name }}</h4>
+    <h5 class="mb-4 text-muted">{{hideout.code}}</h5> <br> 
+        <p><span class=""> Address :</span> {{hideout.address}} <br>
+       <p><span class="" > Country :</span> {{hideout.country.name}} </p>
+       <p><span class="" > City :</span> {{hideout.city}} </p>
+       
+  
+  <div class="ms-3">
+    <a href="{{ path('app_hideout')}}" class="btn btn-sm btn-primary">Go Back</a>
+    <a href="{{path('app_hideout_edit', {id: hideout.id})}}" class="btn btn-sm btn-dark">Edit</a>
+    <a href="#" onclick="event.preventDefault(); confirm('Are You sure?')&& document.getElementById('js-hideout-delete-form').submit();" class="btn btn-sm btn-danger">Delete</a>   
+  </div>
+    {% include "hideout/_delete_form.html.twig" %}
+</div>
+  </div>
+
+{% endblock %}

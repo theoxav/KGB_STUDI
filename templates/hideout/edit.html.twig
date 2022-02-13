@@ -1,0 +1,15 @@
+{% extends 'layouts/base.html.twig' %}
+
+{% block title "Edit Hideout #"~ hideout.id %}
+
+{% block body %}
+
+  <div class="row">
+    <div class="col-md-6 mx-auto">
+    
+      <h1 class="mt-4 mb-4">Edit Hideout #{{hideout.id}}</h1>
+      {{ include('hideout/_form.html.twig', { submitButtonText: 'Update Hideout'}) }}  
+    </div>
+  </div>
+  
+{% endblock body %}
