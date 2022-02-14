@@ -36,7 +36,7 @@ class MissionType extends AbstractType
                 'years' => range(date("Y"),2030)
             ])
             ->add('country',EntityType::class,[
-                'choice_label' => 'country',
+                'choice_label' => 'name',
                 'class' => Country::class,
                 'multiple' => false
             ])
@@ -45,20 +45,24 @@ class MissionType extends AbstractType
                 'class' => Skill::class
             ])
             ->add('hideout', EntityType::class, [
-                'choice_label' => fn(Hideout $hideout) => $hideout->getCode(). "(". $hideout->getCountry().")"
+                'choice_label' => fn($hideout) => $hideout->getAddress()." (".$hideout->getCountry()->getName().")",
+                'class' => Hideout::class
             ])
             ->add('agents', EntityType::class,[
-                'choice_label' => fn(Agent $agent) => $agent->getCodeName(). "(".$agent->getNationality().")",
+                'choice_label' => fn($agent) => $agent->getCodeName()." (".$agent->getNationality().")",
+                'class' => Agent::class,
                 'multiple' => true,
                 'expanded' => true
             ])
             ->add('contacts',EntityType::class, [
-                'choice_label' => fn(Contact $contact) => $contact->getAlias(). "(".$contact->getNationality().")",
-                'mutliple' => true,
+                'choice_label' => fn($contact) => $contact->getAlias()." (".$contact->getNationality().")",
+                'class' => Contact::class,
+                'multiple' => true,
                 'expanded' => true
             ])
             ->add('targets', EntityType::class,[
-                'choice_label' => fn(Target $target) => $target->getAlias(). "(".$target->getNationality().")",
+                'choice_label' => fn(Target $target) => $target->getAlias(). " (".$target->getNationality().")",
+                'class' => Target::class,
                 'multiple' => true,
                 'expanded' => true
             ])

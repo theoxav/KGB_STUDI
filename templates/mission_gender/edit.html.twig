@@ -1,0 +1,15 @@
+{% extends 'layouts/base.html.twig' %}
+
+{% block title "Edit Mission Type #"~ mission_gender.id %}
+
+{% block body %}
+
+  <div class="row">
+    <div class="col-md-6 mx-auto">
+    
+      <h1 class="mt-4 mb-4">Edit Mission Type #{{mission_gender.id}}</h1>
+      {{ include('mission_gender/_form.html.twig', { submitButtonText: 'Update Type'}) }}  
+    </div>
+  </div>
+  
+{% endblock body %}

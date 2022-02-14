@@ -27,7 +27,7 @@ class Country
     #[ORM\OneToMany(mappedBy: 'country', targetEntity: Hideout::class, orphanRemoval: true, cascade:['persist'])]
     private $hideouts;
 
-    #[ORM\OneToMany(mappedBy: 'country', targetEntity: Mission::class, orphanRemoval: true)]
+    #[ORM\OneToMany(mappedBy: 'country', targetEntity: Mission::class, orphanRemoval: true, cascade:['persist'])]
     private $missions;
 
     public function __construct()

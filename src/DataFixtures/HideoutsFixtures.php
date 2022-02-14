@@ -15,8 +15,7 @@ class HideoutsFixtures extends Fixture
         //HIDEOUT 1
         $hideout1 = new Hideout;
         $hideout1->setCode('Red');
-        $hideout1->setAddress('16 rue des Coudriers');
-        $hideout1->setCity('Brooklyn');
+        $hideout1->setAddress('16 rue des Coudriers Paris');
         
         $building = new HideoutType();
         $building->setName('Building');
@@ -33,8 +32,7 @@ class HideoutsFixtures extends Fixture
         // HIDEOUT 2
         $hideout2 = new Hideout;
         $hideout2->setCode('Dark');
-        $hideout2->setAddress('Jenaer Strasse 82');
-        $hideout2->setCity('Mulheim');
+        $hideout2->setAddress('Jenaer Strasse 82 Mulheim');
         
         $house = new HideoutType();
         $house->setName('House');
@@ -50,8 +48,7 @@ class HideoutsFixtures extends Fixture
         // HIDEOUT 3
         $hideout3 = new Hideout;
         $hideout3->setCode('Blue');
-        $hideout3->setAddress('3660 Patterson Street');
-        $hideout3->setCity('Houston');
+        $hideout3->setAddress('3660 Patterson Street Houston');
         
         $villa = new HideoutType();
         $villa->setName('Villa');

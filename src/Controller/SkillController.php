@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller\Person;
+namespace App\Controller;
 
 use App\Entity\Skill;
 use App\Form\SkillType;

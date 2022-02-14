@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller\Mission;
+namespace App\Controller;
 
 use App\Entity\Mission;
 use App\Form\MissionType;

@@ -2,11 +2,12 @@
 
 namespace App\Entity;
 
+use App\Entity\Mission;
+use Doctrine\ORM\Mapping as ORM;
 use App\Entity\Traits\Timestampable;
 use App\Repository\HideoutRepository;
-use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
-use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 
 #[ORM\Entity(repositoryClass: HideoutRepository::class)]
 #[ORM\HasLifecycleCallbacks]
@@ -24,9 +25,6 @@ class Hideout
 
     #[ORM\Column(type: 'string', length: 255)]
     private $address;
-
-    #[ORM\Column(type: 'string', length: 255)]
-    private $city;
 
     #[ORM\ManyToOne(targetEntity: Country::class, inversedBy: 'hideouts', cascade:['persist'])]
     #[ORM\JoinColumn(nullable: false)]
@@ -69,18 +67,6 @@ class Hideout
     public function setAddress(string $address): self
     {
         $this->address = $address;
-
-        return $this;
-    }
-
-    public function getCity(): ?string
-    {
-        return $this->city;
-    }
-
-    public function setCity(string $city): self
-    {
-        $this->city = $city;
 
         return $this;
     }

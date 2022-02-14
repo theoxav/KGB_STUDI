@@ -12,7 +12,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
-#[Route('/hideout')]
+#[Route('/hideout-type')]
 class HideoutTypeController extends AbstractController
 {
     #[Route('/', name:'app_hideout_type')]

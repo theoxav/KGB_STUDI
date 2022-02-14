@@ -8,7 +8,7 @@
 
     <table class="mt-5 table table-hover text-center">
     <thead>
-        <tr>
+        <tr class="table-secondary">
         <th scope="col">FirstName</th>
         <th scope="col">LastName</th>
         <th scope="col">Infos</th>
@@ -16,16 +16,16 @@
     </thead>
     <tbody>
     {% for target in targets %}
-        <tr class="table-primary">
+        <tr class="table-dark">
         <td>{{target.firstName}}</td>
         <td>{{target.lastName}}</td>
-        <td><a href="{{ path('app_target_show', {id: target.id})}}"<i class="btn btn-dark fa-solid fa-plus rounded"></i></a></td>
+        <td><a href="{{ path('app_target_show', {id: target.id})}}"<i class="btn btn-danger fa-solid fa-plus rounded"></i></a></td>
         </tr>
     {% endfor %}
     </tbody>
        
     </table>
-      <a href="{{ path('app_target_create')}}" class="btn rounded btn-info">Add Contact</a></td>
+      <a href="{{ path('app_target_create')}}" class="btn rounded btn-danger">Add Target</a></td>
    </div>
   </div>
 {% endblock %}

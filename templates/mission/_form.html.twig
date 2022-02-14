@@ -1,0 +1,26 @@
+{{form_start(form)}}
+  {{form_row(form.title)}}
+  {{form_row(form.codeName)}}
+  {{form_row(form.country)}}
+  {{form_row(form.hideout)}}
+  {{form_row(form.skills)}}
+  <div class="row">
+    <div class="col-md-4">
+  {{form_row(form.agents)}}    
+    </div>
+     <div class="col-md-4">
+  {{form_row(form.contacts)}}    
+    </div>
+     <div class="col-md-4">
+  {{form_row(form.targets)}}    
+    </div>
+  </div>
+
+  {{form_row(form.startDate)}}
+  {{form_row(form.endDate)}}
+  {{form_row(form.description)}}
+  
+  
+     <input type="submit" value="{{ submitButtonText|default('Add Mission')}}" class="mt-4 btn btn-info w-100" formnovalidate />
+       
+{{form_end(form)}}

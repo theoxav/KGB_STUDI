@@ -27,7 +27,7 @@ class Agent extends Person
     #[ORM\ManyToMany(targetEntity: Skill::class, inversedBy: 'agents', cascade:['persist'])]
     private $skills;
 
-    #[ORM\ManyToMany(targetEntity: Mission::class, mappedBy: 'agents')]
+    #[ORM\ManyToMany(targetEntity: Mission::class, mappedBy: 'agents',cascade:['persist'])]
     private $missions;
 
     public function __construct()

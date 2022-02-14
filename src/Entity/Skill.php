@@ -27,7 +27,7 @@ class Skill
     #[ORM\ManyToMany(targetEntity: Agent::class, mappedBy: 'skills', cascade:['persist'])]
     private $agents;
 
-    #[ORM\OneToMany(mappedBy: 'skills', targetEntity: Mission::class)]
+    #[ORM\OneToMany(mappedBy: 'skills', targetEntity: Mission::class, cascade:['persist'])]
     private $missions;
 
     public function __construct()

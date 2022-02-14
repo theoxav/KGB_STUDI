@@ -2,10 +2,11 @@
 
 namespace App\Entity;
 
-use App\Repository\MissionRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
+use App\Entity\Hideout;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\MissionRepository;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ArrayCollection;
 
 #[ORM\Entity(repositoryClass: MissionRepository::class)]
 class Mission
@@ -43,19 +44,27 @@ class Mission
     private $endDate;
 
     #[ORM\ManyToMany(targetEntity: Agent::class, inversedBy: 'missions')]
+    #[ORM\JoinColumn(nullable:false)]
     private $agents;
 
     #[ORM\ManyToMany(targetEntity: Contact::class, inversedBy: 'missions')]
+    #[ORM\JoinColumn(nullable: false)]
     private $contacts;
 
     #[ORM\ManyToMany(targetEntity: Target::class, inversedBy: 'missions')]
+    #[ORM\JoinColumn(nullable: false)]
     private $targets;
+
+    #[ORM\ManyToOne(targetEntity: MissionGender::class, inversedBy: 'missions')]
+    #[ORM\JoinColumn(nullable: false)]
+    private $missionGender;
 
     public function __construct()
     {
         $this->agents = new ArrayCollection();
         $this->contacts = new ArrayCollection();
         $this->targets = new ArrayCollection();
+
     }
 
     public function getId(): ?int
@@ -227,6 +236,18 @@ class Mission
     public function removeTarget(Target $target): self
     {
         $this->targets->removeElement($target);
+
+        return $this;
+    }
+
+    public function getMissionGender(): ?MissionGender
+    {
+        return $this->missionGender;
+    }
+
+    public function setMissionGender(?MissionGender $missionGender): self
+    {
+        $this->missionGender = $missionGender;
 
         return $this;
     }

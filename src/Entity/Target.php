@@ -25,7 +25,7 @@ class Target extends Person
     #[Assert\NotBlank()]
     private $alias;
 
-    #[ORM\ManyToMany(targetEntity: Mission::class, mappedBy: 'targets')]
+    #[ORM\ManyToMany(targetEntity: Mission::class, mappedBy: 'targets', cascade:['persist'])]
     private $missions;
 
     public function __construct()
