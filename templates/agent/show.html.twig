@@ -3,29 +3,35 @@
 
 {% block body %}
   <div class="container">
-      <div class="mt-4 col-md-12 mx-auto card border-dark rounded" style="max-width: 18rem;">
-   <img src="{{ (agent.imageName ? vich_uploader_asset(agent) : asset('img/profildefault.webp')) | imagine_filter('squared_thumbnail_medium') }}" alt="{{ agent.fullName }}" class=" w-100"/>
-  <div class="card-body">
-    <h4 class="card-title">{{ agent.fullName }}</h4>
-    <h5 class="mb-4 text-muted"> {{agent.codeName}}</h5> <br> 
-        <p><span class=""> Birthday :</span> {{agent.birthday|date('d/m/Y')}} <br>
-       <p><span class="" > Nationality :</span> {{agent.nationality}} </p>
-       <p><span class=""> 
-         Specialities : {% for skills in agent.skills %}
-                           <li>{{skills.name}}</li></span>
-                          {% endfor %}
-        </p>  
-       
-            
-     </p>
-  
-  <div class="ms-3">
-    <a href="{{ path('app_agent')}}" class="btn btn-sm btn-primary">Go Back</a>
-    <a href="{{path('app_agent_edit', {id: agent.id})}}" class="btn btn-sm btn-dark">Edit</a>
-    <a href="#" onclick="event.preventDefault(); confirm('Are You sure?')&& document.getElementById('js-agent-delete-form').submit();" class="btn btn-sm btn-danger">Delete</a>   
+     <div class="col-12 mt-4">
+      <div class="mx-auto card border-info rounded mb-3" style="max-width: 20rem;">
+      <div class="card-header bg-info">
+        <h4 class="text-white">{{agent.fullName}}</h4>
+        <h5 class="text-white">{{agent.codeName}}</h5>
+      </div>
+      <div class="card-body">
+        <img src="{{ (agent.imageName ? vich_uploader_asset(agent) : asset('img/profildefault.webp')) | imagine_filter('squared_thumbnail_medium') }}" alt="{{ agent.fullName }}" class=" w-100"/> 
+        <p class="card-text mt-3">
+          <span class=""> Birthday :</span> {{agent.birthday|date('d/m/Y')}} <br>
+          <span class="" > Nationality :</span> {{agent.nationality}} <br>
+          <span class=""> Specialities : </span>
+          <ul>
+          {% for skills in agent.skills %}
+            <li>{{skills.name}}</li>
+          {% endfor %} 
+          </ul>
+         </p>
+
+      <div class="ms-3">
+        <a href="{{ path('app_agent')}}" class="btn btn-sm btn-primary">Go Back</a>
+        <a href="{{path('app_agent_edit', {id: agent.id})}}" class="btn btn-sm btn-dark">Edit</a>
+        <a href="#" onclick="event.preventDefault(); confirm('Are You sure?')&& document.getElementById('js-agent-delete-form').submit();" class="btn btn-sm btn-danger">Delete</a>   
+        {% include "agent/_delete_form.html.twig" %}
+      </div>
+      </div>
+     </div>
+     </div>
   </div>
-    {% include "agent/_delete_form.html.twig" %}
-</div>
-  </div>
+ 
 
 {% endblock %}

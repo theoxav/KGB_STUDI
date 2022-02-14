@@ -7,6 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 use App\Entity\Traits\Timestampable;
 use App\Repository\HideoutRepository;
 use Doctrine\Common\Collections\Collection;
+use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\Common\Collections\ArrayCollection;
 
 #[ORM\Entity(repositoryClass: HideoutRepository::class)]
@@ -21,9 +22,11 @@ class Hideout
     private $id;
 
     #[ORM\Column(type: 'string', length: 255)]
+    #[Assert\NotBlank()]
     private $code;
 
     #[ORM\Column(type: 'string', length: 255)]
+    #[Assert\NotBlank()]
     private $address;
 
     #[ORM\ManyToOne(targetEntity: Country::class, inversedBy: 'hideouts', cascade:['persist'])]

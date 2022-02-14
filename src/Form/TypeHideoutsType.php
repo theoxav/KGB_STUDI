@@ -15,9 +15,7 @@ class TypeHideoutsType extends AbstractType
     {
         $builder
         ->add('name', TextType::class, [
-            'constraints' => [
-                new NotBlank()
-            ]
+            
         ])
         ;
     }

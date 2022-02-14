@@ -3,27 +3,71 @@
 
 {% block body %}
   <div class="container">
-      <div class="mt-4 col-md-12 mx-auto card border-dark rounded" style="max-width: 18rem;">
-  <div class="card-body">
-    <h4 class="card-title">{{ mission.title }}</h4>
+   
+    <h1 class="mt-4">{{ mission.title }}</h1>
     <h5 class="mb-4 text-muted"> {{mission.codeName}}</h5> <br> 
+       <p><span class=""> Country:</span> {{mission.country.name}} <br>
+       <p><span class=""> Address:</span> {{mission.hideout.address}} <br>
        <p><span class=""> Description :</span> {{mission.description}} <br>
-       <p><span class="" > Agents: <br>
-          <span class=""> Contact: <br>
-          <span class=""> Target: <br>
-       </p>
-        
-       
-            
-     </p>
-  
-  <div class="ms-3">
-    <a href="{{ path('app_mission')}}" class="btn btn-sm btn-primary">Go Back</a>
-    <a href="{{path('app_mission_edit', {id: mission.id})}}" class="btn btn-sm btn-dark">Edit</a>
-    <a href="#" onclick="event.preventDefault(); confirm('Are You sure?')&& document.getElementById('js-mission-delete-form').submit();" class="btn btn-sm btn-danger">Delete</a>   
-  </div>
+ 
+      {# AGENTS #}
+      <h4 class="text-center mb-5">The Agent(s)</h4>
+      <div class="d-flex flex-row align-content-start flex-wrap">
+       {% for agents in mission.agents %}
+        <div class="col-6">
+          <div class="card border-info mb-3 rounded" style="max-width: 15rem;">
+          <div class="card-header bg-info text-white">{{agents.codeName}}</div>
+          <div class="card-body">
+          <img src="{{ (agents.imageName ? vich_uploader_asset(agents) : asset('img/profildefault.webp')) | imagine_filter('squared_thumbnail_medium') }}" alt="{{ agents.fullName }}" class=" w-100"/> 
+          <p class="card-text text-center mt-2">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+       </div>
+    </div>
+      </div>
+     {% endfor %}   
+   </div>
+    
+      {# CONTACTS #}
+      <h4 class="text-center mb-5 mt-5">Contact(s)</h4>
+      <div class="d-flex flex-row align-content-start flex-wrap">
+       {% for contacts in mission.contacts %}
+        <div class="col-6">
+          <div class="card border-success rounded mb-3" style="max-width: 15rem;">
+          <div class="card-header bg-success text-white">{{contacts.alias}}</div>
+          <div class="card-body">
+          <img src="{{ (contacts.imageName ? vich_uploader_asset(contacts) : asset('img/profildefault.webp')) | imagine_filter('squared_thumbnail_medium') }}" alt="{{ contacts.fullName }}" class=" w-100"/> 
+          <p class="mt-2 card-text text-center">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+       </div>
+    </div>
+      </div>
+     {% endfor %}   
+   </div>
+
+     {# TARGETS #}
+      <h4 class="text-center mb-5 mt-5">TARGET(S)</h4>
+      <div class="d-flex flex-row align-content-start flex-wrap">
+       {% for targets in mission.targets %}
+        <div class="col-6">
+          <div class="card bg-primary border-danger rounded mb-3" style="max-width: 15rem;">
+          <div class="card-header bg-danger text-white">{{targets.alias}}</div>
+          <div class="card-body">
+          <img src="{{ (targets.imageName ? vich_uploader_asset(targets) : asset('img/profildefault.webp')) | imagine_filter('squared_thumbnail_medium') }}" alt="{{ targets.fullName }}" class=" w-100"/> 
+          <p class="mt-2 card-text text-center text-white">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+       </div>
+    </div>
+      </div>
+     {% endfor %}   
+   </div>
+   
+   </div>
+  <div class="container-fluid ">
+  <div class="col-12 d-flex flex-column">
+    <a href="{{ path('app_mission')}}" class="btn btn-sm btn-primary rounded m-2 ">Go Back</a>
+    <a href="{{path('app_mission_edit', {id: mission.id})}}" class="btn btn-sm btn-dark m-2">Edit Mission</a>
+    <a href="#" onclick="event.preventDefault(); confirm('Are You sure?')&& document.getElementById('js-mission-delete-form').submit();" class="btn btn-sm btn-danger rounded m-2">Delete Mission</a> 
     {% include "mission/_delete_form.html.twig" %}
-</div>
   </div>
+  
+  </div>
+</div>
 
 {% endblock %}

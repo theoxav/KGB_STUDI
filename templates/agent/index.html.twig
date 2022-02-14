@@ -16,7 +16,7 @@
     </thead>
     <tbody>
     {% for agent in agents %}
-        <tr class="table-dark">
+        <tr class="table-dark ">
         <td>{{agent.firstName}}</td>
         <td>{{agent.lastName}}</td>
         <td><a href="{{ path('app_agent_show', {id: agent.id})}}"<i class="btn btn-info fa-solid fa-plus rounded"></i></a></td>

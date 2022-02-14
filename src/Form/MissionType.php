@@ -8,6 +8,7 @@ use App\Entity\Contact;
 use App\Entity\Country;
 use App\Entity\Hideout;
 use App\Entity\Mission;
+use App\Entity\MissionGender;
 use App\Entity\Skill;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -43,6 +44,11 @@ class MissionType extends AbstractType
             ->add('skills',EntityType::class, [
                 'choice_label' => 'name',
                 'class' => Skill::class
+            ])
+            ->add('mission_gender',EntityType::class, [
+                'choice_label' => 'name',
+                'label' => 'Mission Type',
+                'class' => MissionGender::class
             ])
             ->add('hideout', EntityType::class, [
                 'choice_label' => fn($hideout) => $hideout->getAddress()." (".$hideout->getCountry()->getName().")",

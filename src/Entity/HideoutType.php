@@ -6,6 +6,7 @@ use App\Entity\Traits\Timestampable;
 use App\Repository\HideoutTypeRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: HideoutTypeRepository::class)]
@@ -20,9 +21,10 @@ class HideoutType
     private $id;
 
     #[ORM\Column(type: 'string', length: 255)]
+    #[Assert\NotBlank(message:'Please enter a type of hideout')]
     private $name;
 
-    #[ORM\OneToMany(mappedBy: 'type', targetEntity: Hideout::class, orphanRemoval: true, cascade:['persist'])]
+    #[ORM\OneToMany(mappedBy: 'type', targetEntity: Hideout::class, orphanRemoval: true)]
     private $hideouts;
 
     public function __construct()

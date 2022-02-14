@@ -24,10 +24,10 @@ class Country
     #[Assert\NotBlank()]
     private $name;
 
-    #[ORM\OneToMany(mappedBy: 'country', targetEntity: Hideout::class, orphanRemoval: true, cascade:['persist'])]
+    #[ORM\OneToMany(mappedBy: 'country', targetEntity: Hideout::class, orphanRemoval: true)]
     private $hideouts;
 
-    #[ORM\OneToMany(mappedBy: 'country', targetEntity: Mission::class, orphanRemoval: true, cascade:['persist'])]
+    #[ORM\OneToMany(mappedBy: 'country', targetEntity: Mission::class, orphanRemoval: true)]
     private $missions;
 
     public function __construct()

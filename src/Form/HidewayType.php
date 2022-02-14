@@ -28,11 +28,7 @@ class HidewayType extends AbstractType
                     new NotBlank()
                 ]
             ])
-            ->add('city', TextType::class, [
-                'constraints' => [
-                    new NotBlank()
-                ]
-            ])
+         
             ->add('country', EntityType::class, [
                 'choice_label' => 'name',
                 'class' => Country::class,

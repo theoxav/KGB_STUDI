@@ -1,9 +1,22 @@
 {{form_start(form)}}
+
   {{form_row(form.title)}}
+
   {{form_row(form.codeName)}}
-  {{form_row(form.country)}}
-  {{form_row(form.hideout)}}
+ 
+  <div class="row">
+    <div class="col-6">
+  {{form_row(form.country)}}  
+    </div>
+     <div class="col-6">
+  {{form_row(form.hideout)}}  
+    </div>
+  </div>
+
+  {{form_row(form.mission_gender)}}
+
   {{form_row(form.skills)}}
+
   <div class="row">
     <div class="col-md-4">
   {{form_row(form.agents)}}    
@@ -18,6 +31,7 @@
 
   {{form_row(form.startDate)}}
   {{form_row(form.endDate)}}
+  
   {{form_row(form.description)}}
   
   

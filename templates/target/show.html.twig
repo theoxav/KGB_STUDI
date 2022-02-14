@@ -2,23 +2,29 @@
 {% block title %}{{ target.fullName }}{% endblock %}
 
 {% block body %}
-  <div class="container">
-      <div class="mt-4 col-md-12 mx-auto card border-dark rounded" style="max-width: 18rem;">
-   <img src="{{ (target.imageName ? vich_uploader_asset(target) : asset('img/profildefault.webp')) | imagine_filter('squared_thumbnail_medium') }}" alt="{{ target.fullName }}" class=" w-100"/>
-  <div class="card-body">
-    <h4 class="card-title">{{ target.fullName }}</h4>
-    <h5 class="mb-4 text-muted"> {{target.alias}}</h5> 
-         <p><span class=""> Birthday :</span> {{target.birthday|date('d/m/Y')}} <br>
-       <p><span class="" > Nationality :</span> {{target.nationality}} </p>
-     
-  
-  <div class="ms-3">
-    <a href="{{ path('app_target')}}" class="btn btn-sm btn-primary">Go Back</a>
-    <a href="{{path('app_target_edit', {id: target.id})}}" class="btn btn-sm btn-dark">Edit</a>
-    <a href="#" onclick="event.preventDefault(); confirm('Are You sure?')&& document.getElementById('js-target-delete-form').submit();" class="btn btn-sm btn-danger">Delete</a>   
-  </div>
-    {% include "target/_delete_form.html.twig" %}
-</div>
+   <div class="container">
+     <div class="col-12 mt-4">
+      <div class="mx-auto card border-danger bg-primary rounded mb-3" style="max-width: 20rem;">
+      <div class="card-header bg-danger">
+        <h4 class="text-white">{{target.fullName}}</h4>
+        <h5 class="text-white">{{target.alias}}</h5>
+      </div>
+      <div class="card-body">
+        <img src="{{ (target.imageName ? vich_uploader_asset(target) : asset('img/profildefault.webp')) | imagine_filter('squared_thumbnail_medium') }}" alt="{{ target.fullName }}" class=" w-100"/> 
+        <p class="card-text mt-3 text-white">
+          <span class=""> Birthday :</span> {{target.birthday|date('d/m/Y')}} <br>
+          <span class="" > Nationality :</span> {{target.nationality}} <br>
+         </p>
+
+      <div class="ms-3">
+        <a href="{{ path('app_target')}}" class="btn btn-sm btn-secondary">Go Back</a>
+        <a href="{{path('app_target_edit', {id: target.id})}}" class="btn btn-sm btn-dark">Edit</a>
+        <a href="#" onclick="event.preventDefault(); confirm('Are You sure?')&& document.getElementById('js-target-delete-form').submit();" class="btn btn-sm btn-danger">Delete</a>   
+        {% include "target/_delete_form.html.twig" %}
+      </div>
+      </div>
+     </div>
+     </div>
   </div>
 
 {% endblock %}

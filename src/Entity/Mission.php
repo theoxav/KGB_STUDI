@@ -7,6 +7,8 @@ use Doctrine\ORM\Mapping as ORM;
 use App\Repository\MissionRepository;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Validator\Constraints as Assert;
+
 
 #[ORM\Entity(repositoryClass: MissionRepository::class)]
 class Mission
@@ -17,12 +19,15 @@ class Mission
     private $id;
 
     #[ORM\Column(type: 'string', length: 255)]
+    #[Assert\NotBlank()]
     private $title;
 
     #[ORM\Column(type: 'text')]
+    #[Assert\NotBlank()]
     private $description;
 
     #[ORM\Column(type: 'string', length: 255)]
+    #[Assert\NotBlank()]
     private $codeName;
 
     #[ORM\ManyToOne(targetEntity: Country::class, inversedBy: 'missions')]
