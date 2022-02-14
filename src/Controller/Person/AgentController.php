@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller\Person;
 
 use App\Entity\Agent;
 use App\Form\AgentType;

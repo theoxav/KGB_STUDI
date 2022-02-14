@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller\Person;
 
 use App\Entity\Target;
 use App\Form\TargetType;

@@ -27,9 +27,13 @@ class Agent extends Person
     #[ORM\ManyToMany(targetEntity: Skill::class, inversedBy: 'agents', cascade:['persist'])]
     private $skills;
 
+    #[ORM\ManyToMany(targetEntity: Mission::class, mappedBy: 'agents')]
+    private $missions;
+
     public function __construct()
     {
         $this->skills = new ArrayCollection();
+        $this->missions = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -69,6 +73,33 @@ class Agent extends Person
     public function removeSkill(Skill $skill): self
     {
         $this->skills->removeElement($skill);
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Mission[]
+     */
+    public function getMissions(): Collection
+    {
+        return $this->missions;
+    }
+
+    public function addMission(Mission $mission): self
+    {
+        if (!$this->missions->contains($mission)) {
+            $this->missions[] = $mission;
+            $mission->addAgent($this);
+        }
+
+        return $this;
+    }
+
+    public function removeMission(Mission $mission): self
+    {
+        if ($this->missions->removeElement($mission)) {
+            $mission->removeAgent($this);
+        }
 
         return $this;
     }
