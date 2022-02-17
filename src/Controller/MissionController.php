@@ -10,6 +10,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\RedirectResponse;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 #[Route('/mission')]
@@ -35,6 +36,7 @@ class MissionController extends AbstractController
     }
 
     #[Route('/create', name: 'app_mission_create', methods:['GET','POST'])]
+    #[IsGranted("ROLE_ADMIN")]
     public function create(Request $request, EntityManagerInterface $em): Response
     {    
         $mission = new Mission;
@@ -43,10 +45,12 @@ class MissionController extends AbstractController
         $form->handleRequest($request);
 
         if($form->isSubmitted() && $form->isValid()) {
-            
-            $em->persist($mission);
-            $em->flush();
-
+           if(!$mission->skillsAgentsIsValid() || !$mission->nationalityIsValid() || !$mission->hideoutIsValid() || !$mission->contactIsValid()){
+          dd('erreur');
+        }
+           $em->persist($mission);
+           $em->flush();
+        
             return $this->redirectToRoute('app_mission');
         }
         return $this->render('mission/create.html.twig',[
@@ -55,6 +59,7 @@ class MissionController extends AbstractController
     }
 
     #[Route('/{id<[0-9]+>}/edit', name: 'app_mission_edit', methods:['GET','PUT'])]
+    #[IsGranted("ROLE_ADMIN")]
     public function edit(Request $request,Mission $mission, EntityManagerInterface $em): Response
     {    
         
@@ -76,11 +81,12 @@ class MissionController extends AbstractController
     }
 
     #[Route('/{id<[0-9]+>}/delete', name: 'app_mission_delete', methods:'DELETE')]
+    #[IsGranted("ROLE_ADMIN")]
     public function delete(Request $request,Mission $mission, EntityManagerInterface $em): RedirectResponse
     {  
         $submittedToken = $request->request->get('csrf_token');
          if($this->isCsrfTokenValid('mission_delete_',$submittedToken )) {
-
+           
         $em->remove($mission);
         $em->flush();
 

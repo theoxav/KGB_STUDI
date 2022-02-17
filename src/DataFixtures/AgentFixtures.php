@@ -21,7 +21,7 @@ class AgentFixtures extends Fixture
         $agent1->setLastName('Bond');
         $agent1->setBirthday(new \DateTimeImmutable());
         $agent1->setCodeName('007');
-        $agent1->setNationality('English');
+        $agent1->setNationality('England');
         $agent1->addSkill($skill);
 
 
@@ -34,7 +34,7 @@ class AgentFixtures extends Fixture
          $agent2->setLastName('Rogers');
          $agent2->setBirthday(new \DateTimeImmutable());
          $agent2->setCodeName('Captain America');
-         $agent2->setNationality('America');
+         $agent2->setNationality('United-States');
          $agent2->addSkill($skill);
  
          $manager->persist($agent2);
@@ -46,7 +46,7 @@ class AgentFixtures extends Fixture
          $agent3->setLastName('Goku');
          $agent3->setBirthday(new \DateTimeImmutable());
          $agent3->setCodeName('SanGoku');
-         $agent3->setNationality('Sayen');
+         $agent3->setNationality('Japan');
          $agent3->addSkill($skill);
  
          $manager->persist($agent3);
@@ -58,10 +58,22 @@ class AgentFixtures extends Fixture
          $agent4->setLastName('Jackman');
          $agent4->setBirthday(new \DateTimeImmutable());
          $agent4->setCodeName('Wolverine');
-         $agent4->setNationality('America');
+         $agent4->setNationality('France');
          $agent4->addSkill($skill);
  
          $manager->persist($agent4);
+         $manager->flush();
+
+         // AGENT 5
+         $agent5 = new Agent();
+         $agent5->setFirstName('John');
+         $agent5->setLastName('Doe');
+         $agent5->setBirthday(new \DateTimeImmutable());
+         $agent5->setCodeName('008');
+         $agent5->setNationality('France');
+         $agent5->addSkill($skill);
+ 
+         $manager->persist($agent5);
          $manager->flush();
     }
 }

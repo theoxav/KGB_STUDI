@@ -10,6 +10,7 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Validator\Constraints as Assert;
 
+use function PHPUnit\Framework\throwException;
 
 #[ORM\Entity(repositoryClass: MissionRepository::class)]
 class Mission
@@ -256,5 +257,65 @@ class Mission
         $this->missionGender = $missionGender;
 
         return $this;
+    }
+       
+    public function nationalityIsValid()
+    {
+       $dataAgents = $this->agents;
+       $dataTargets = $this->targets;
+       
+       foreach($dataAgents as $agent) {
+           foreach ($dataTargets as $target) {
+               if ($agent->getNationality() == $target->getNationality()) {
+                   return false;
+               }
+           }
+       }
+       return true;
+    }
+
+    public function hideoutIsValid()
+    {
+        $dataCountry = $this->country;
+        $dataHideout = $this->hideout;
+
+        if($dataCountry != $dataHideout->getCountry()) {
+            return false;
+        }
+        return true;
+    }
+
+    public function contactIsValid() 
+    {
+        $dataCountry = $this->country;
+        $dataContact = $this->contacts;
+
+        foreach($dataContact as $contact) {
+            if($dataCountry != $contact->getNationality())
+            {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public function  skillsAgentsIsValid() 
+    {
+        $dataSkills = $this->skills;
+        $dataAgents = $this->agents;
+
+        $validSkillsAgents = 0;
+
+        foreach($dataAgents as $agent) {
+            $agentSkills = $agent->displaySkills();
+
+            if(in_array($dataSkills->getName(), $agentSkills)) {
+                $validSkillsAgents += 1;
+            }
+            if ($validSkillsAgents == 0) {
+                return false;
+            }
+        }
+        return true;
     }
 }

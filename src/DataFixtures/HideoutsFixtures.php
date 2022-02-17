@@ -37,13 +37,13 @@ class HideoutsFixtures extends Fixture
         $house = new HideoutType();
         $house->setName('House');
 
-        $germany = new Country;
-        $germany->setName('Germany');
+        $england = new Country;
+        $england->setName('England');
 
         $hideout2->setType($house);
-        $hideout2->setCountry($germany);
+        $hideout2->setCountry($england);
        
-        $manager->persist($hideout2,$building,$germany);
+        $manager->persist($hideout2,$building,$england);
 
         // HIDEOUT 3
         $hideout3 = new Hideout;
@@ -59,7 +59,7 @@ class HideoutsFixtures extends Fixture
         $hideout3->setType($villa);
         $hideout3->setCountry($unitedStates);
     
-        $manager->persist($hideout3,$villa,$germany);
+        $manager->persist($hideout3,$villa,$unitedStates);
         
         $manager->flush();
      
