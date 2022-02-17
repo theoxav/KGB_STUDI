@@ -24,7 +24,7 @@ class HideoutType
     #[Assert\NotBlank(message:'Please enter a type of hideout')]
     private $name;
 
-    #[ORM\OneToMany(mappedBy: 'type', targetEntity: Hideout::class, orphanRemoval: true)]
+    #[ORM\OneToMany(mappedBy: 'type', targetEntity: Hideout::class,cascade:['persist'], orphanRemoval:true)]
     private $hideouts;
 
     public function __construct()

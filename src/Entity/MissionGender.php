@@ -21,7 +21,7 @@ class MissionGender
     #[Assert\NotBlank()]
     private $name;
 
-    #[ORM\OneToMany(mappedBy: 'missionGender', targetEntity: Mission::class, orphanRemoval: true)]
+    #[ORM\OneToMany(mappedBy: 'missionGender', targetEntity: Mission::class, orphanRemoval:true)]
     private $missions;
 
     public function __construct()

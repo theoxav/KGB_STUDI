@@ -29,15 +29,15 @@ class Hideout
     #[Assert\NotBlank()]
     private $address;
 
-    #[ORM\ManyToOne(targetEntity: Country::class, inversedBy: 'hideouts', cascade:['persist'])]
+    #[ORM\ManyToOne(targetEntity: Country::class, inversedBy: 'hideouts',cascade:['persist'])]
     #[ORM\JoinColumn(nullable: false)]
     private $country;
 
-    #[ORM\ManyToOne(targetEntity: HideoutType::class, inversedBy: 'hideouts', cascade:['persist'])]
+    #[ORM\ManyToOne(targetEntity: HideoutType::class, inversedBy: 'hideouts',cascade:['persist'])]
     #[ORM\JoinColumn(nullable: false)]
     private $type;
 
-    #[ORM\OneToMany(mappedBy: 'hideout', targetEntity: Mission::class)]
+    #[ORM\OneToMany(mappedBy: 'hideout', targetEntity: Mission::class, cascade:['remove'])]
     private $missions;
 
     public function __construct()

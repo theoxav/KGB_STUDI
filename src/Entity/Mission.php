@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use App\Entity\Target;
 use App\Entity\Hideout;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\MissionRepository;
@@ -49,15 +50,15 @@ class Mission
     private $endDate;
 
     #[ORM\ManyToMany(targetEntity: Agent::class, inversedBy: 'missions')]
-    #[ORM\JoinColumn(nullable:false)]
+    #[ORM\JoinColumn(nullable:false, onDelete:'cascade')]
     private $agents;
 
     #[ORM\ManyToMany(targetEntity: Contact::class, inversedBy: 'missions')]
-    #[ORM\JoinColumn(nullable: false)]
+    #[ORM\JoinColumn(nullable: false, onDelete:'cascade')]
     private $contacts;
 
     #[ORM\ManyToMany(targetEntity: Target::class, inversedBy: 'missions')]
-    #[ORM\JoinColumn(nullable: false)]
+    #[ORM\JoinColumn(nullable: false, onDelete:'cascade')]
     private $targets;
 
     #[ORM\ManyToOne(targetEntity: MissionGender::class, inversedBy: 'missions')]
