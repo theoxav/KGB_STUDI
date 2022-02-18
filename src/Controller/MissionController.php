@@ -49,7 +49,7 @@ class MissionController extends AbstractController
 
         $form = $this->createForm(MissionType::class, $mission);
         $form->handleRequest($request);
-
+        
         if($form->isSubmitted() && $form->isValid()) {
            if(!$mission->skillsAgentsIsValid()){ 
             $this->addFlash('error', 'At least one of the agents must have the mission\' speciality'); 
@@ -66,6 +66,7 @@ class MissionController extends AbstractController
            } else {
 
                $em->persist($mission);
+               $mission->setStatus('preparation');
                $em->flush(); 
 
                $this->addFlash('success', 'Mission successfully created'  );
@@ -107,7 +108,7 @@ class MissionController extends AbstractController
                    
                    $em->flush(); 
 
-                   $this->addFlash('success', 'Mission successfully created'  );
+                   $this->addFlash('success', 'Mission successfully updated'  );
                    return $this->redirectToRoute('app_mission');
                }
         }

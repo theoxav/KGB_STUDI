@@ -1,0 +1,43 @@
+
+.status {
+    animation-duration: 1.5s;
+    animation-name: clign;
+    animation-iteration-count: infinite;
+    transition: none;
+}
+
+.preparation {
+    color:$info;
+    text-transform: uppercase;  
+}
+
+.finished {
+    color: $danger;
+    text-transform: uppercase;
+    border:solid;
+}
+
+.started {
+    color: $success;
+    text-transform: uppercase;
+}
+
+.failed {
+    color:black;
+    background-color: $warning;
+    text-transform: uppercase;
+    font-weight: bold;
+    padding: 5px;
+}
+
+
+
+@keyframes clign {
+    0% {opacity: 1;}
+    20% {opacity: 0.8;}
+    40% {opacity: 0.6;}
+    60% {opacity: 0.4;}
+    80% {opacity: 0.6;}
+    90% {opacity: 0.8;}
+    100% {opacity: 1;}
+}

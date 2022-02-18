@@ -2,20 +2,29 @@
 {% block title %}{{ mission.title }}{% endblock %}
 
 {% block body %}
+<div class="row bg-white">
+      <div class="ms-2 col-12 mx-auto">
+        <h1 class=" mt-4 text-bold">{{mission.title}}</h1>
+        <p class="mb-5 lead text-muted">{{mission.codeName}}</p>
+        <p><span class="text-primary text-decoration-underline"> Country:</span> {{mission.country.name}} <br>
+        <p><span class="text-primary text-decoration-underline"> Address:</span> {{mission.hideout.address}} <br>
+        <p><span class="text-primary text-decoration-underline"> Description :</span> {{mission.description}} <br>
+      </div>
+    </div>
   <div class="container">
-   
-    <h1 class="mt-4">{{ mission.title }}</h1>
-    <h5 class="mb-4 text-muted"> {{mission.codeName}}</h5> <br> 
-       <p><span class=""> Country:</span> {{mission.country.name}} <br>
-       <p><span class=""> Address:</span> {{mission.hideout.address}} <br>
-       <p><span class=""> Description :</span> {{mission.description}} <br>
+
+    
  
       {# AGENTS #}
-      <h4 class="text-center mb-5">The Agent(s)</h4>
+
+
+
+      <div class="row">
+         <div class="text-center mt-5 mb-5 p-2 bg-primary text-white rounded">The Agent(s)</div>
       <div class="d-flex flex-row align-content-start flex-wrap">
        {% for agents in mission.agents %}
         <div class="col-6">
-          <div class="card border-info mb-3 rounded" style="max-width: 15rem;">
+          <div class="card border-info mb-3 rounded" style="max-width: 10rem;">
           <div class="card-header bg-info text-white">{{agents.codeName}}</div>
           <div class="card-body">
           <img src="{{ (agents.imageName ? vich_uploader_asset(agents) : asset('img/profildefault.webp')) | imagine_filter('squared_thumbnail_medium') }}" alt="{{ agents.fullName }}" class=" w-100"/> 
@@ -25,13 +34,15 @@
       </div>
      {% endfor %}   
    </div>
+      </div>
+     
     
       {# CONTACTS #}
-      <h4 class="text-center mb-5 mt-5">Contact(s)</h4>
+      <h4 class="mt-3 text-center mb-5 p-2 bg-primary text-white rounded">Contact(s)</h4>
       <div class="d-flex flex-row align-content-start flex-wrap">
        {% for contacts in mission.contacts %}
         <div class="col-6">
-          <div class="card border-success rounded mb-3" style="max-width: 15rem;">
+          <div class="card border-success rounded mb-3" style="max-width: 10rem;">
           <div class="card-header bg-success text-white">{{contacts.alias}}</div>
           <div class="card-body">
           <img src="{{ (contacts.imageName ? vich_uploader_asset(contacts) : asset('img/profildefault.webp')) | imagine_filter('squared_thumbnail_medium') }}" alt="{{ contacts.fullName }}" class=" w-100"/> 
@@ -43,11 +54,11 @@
    </div>
 
      {# TARGETS #}
-      <h4 class="text-center mb-5 mt-5">TARGET(S)</h4>
+      <h4 class="text-center mb-5 p-2 bg-primary text-white rounded">TARGET(S)</h4>
       <div class="d-flex flex-row align-content-start flex-wrap">
        {% for targets in mission.targets %}
         <div class="col-6">
-          <div class="card bg-primary border-danger rounded mb-3" style="max-width: 15rem;">
+          <div class="card bg-primary border-danger rounded mb-3" style="max-width: 10rem;">
           <div class="card-header bg-danger text-white">{{targets.alias}}</div>
           <div class="card-body">
           <img src="{{ (targets.imageName ? vich_uploader_asset(targets) : asset('img/profildefault.webp')) | imagine_filter('squared_thumbnail_medium') }}" alt="{{ targets.fullName }}" class=" w-100"/> 
@@ -60,8 +71,8 @@
    
    </div>
    {% if app.user %}
-    <div class="container-fluid ">
-     <div class="col-12 d-flex flex-column">
+    <div class="container bg-white">
+     <div class="col-10 d-flex flex-column">
        <a href="{{ path('app_mission')}}" class="btn btn-sm btn-primary rounded m-2 ">Go Back</a>
        <a href="{{path('app_mission_edit', {id: mission.id})}}" class="btn btn-sm btn-dark m-2">Edit Mission</a>
        <a href="#" onclick="event.preventDefault(); confirm('Are You sure?')&& document.getElementById('js-mission-delete-form').submit();" class="btn btn-sm btn-danger rounded m-2">Delete Mission</a> 

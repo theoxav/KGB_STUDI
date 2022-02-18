@@ -70,6 +70,11 @@ class Mission
     #[ORM\JoinColumn(nullable: false)]
     private $missionGender;
 
+    #[ORM\Column(type: 'string', length: 255)]
+    private $status;
+
+    
+
     public function __construct()
     {
         $this->agents = new ArrayCollection();
@@ -323,5 +328,16 @@ class Mission
         return true;
     }
 
-   
+    public function getStatus(): ?string
+    {
+        return $this->status;
+    }
+
+    public function setStatus(string $status): self
+    {
+        $this->status = $status;
+
+        return $this;
+    }
+  
 }
