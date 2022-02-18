@@ -22,10 +22,13 @@
         <td><a href="{{ path('app_agent_show', {id: agent.id})}}"<i class="btn btn-info fa-solid fa-plus rounded"></i></a></td>
         </tr>
     {% endfor %}
-    </tbody>
-       
+    </tbody>    
     </table>
-      <a href="{{ path('app_agent_create')}}" class="btn rounded btn-info">Add Agent</a><br>
-   </div>
+   <div class="d-flex justify-content-center">
+    {% do agents.setPageRange(2) %}
+    {{knp_pagination_render(agents, 'layouts/pagination.html.twig')}}
   </div>
+      <a href="{{ path('app_agent_create')}}" class="btn rounded btn-info">Add Agent</a><br>
+  </div>
+  
 {% endblock %}

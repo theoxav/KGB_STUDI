@@ -6,6 +6,7 @@ use App\Entity\MissionGender;
 use App\Form\MissionGenderType;
 use Doctrine\ORM\EntityManagerInterface;
 use App\Repository\MissionGenderRepository;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -18,9 +19,15 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class MissionGenderController extends AbstractController
 {
     #[Route('/', name: 'app_mission_gender')]
-    public function index(MissionGenderRepository $missionGenderRepo): Response
+    public function index(MissionGenderRepository $missionGenderRepo, PaginatorInterface $paginator, Request $request): Response
     {
-        $missionsGender = $missionGenderRepo->findBy([],['name' => 'ASC']);
+        
+        $data = $missionGenderRepo->findBy([],['name' => 'ASC']);
+        $missionsGender = $paginator->paginate(
+            $data,
+            $request->query->getInt('page',1),
+            3
+        );
 
         return $this->render('mission_gender/index.html.twig',[
             'missions_gender' => $missionsGender

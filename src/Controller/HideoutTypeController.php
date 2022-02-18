@@ -6,6 +6,7 @@ use App\Entity\HideoutType;
 use App\Form\TypeHideoutsType;
 use Doctrine\ORM\EntityManagerInterface;
 use App\Repository\HideoutTypeRepository;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -18,9 +19,14 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class HideoutTypeController extends AbstractController
 {
     #[Route('/', name:'app_hideout_type')]
-    public function index(HideoutTypeRepository $hideoutTypeRepo): Response
+    public function index(HideoutTypeRepository $hideoutTypeRepo, PaginatorInterface $paginator, Request $request): Response
     {
-        $hideouts = $hideoutTypeRepo->findAll();
+        $data = $hideoutTypeRepo->findAll();
+        $hideouts = $paginator->paginate(
+            $data,
+            $request->query->getInt('page',1),
+            3
+        );
 
         return $this->render('hideout_type/index.html.twig',[
             'hideouts_type' => $hideouts

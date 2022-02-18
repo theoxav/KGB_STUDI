@@ -25,6 +25,10 @@
     </tbody>
        
     </table>
+    <div class="d-flex justify-content-center">
+    {% do contacts.setPageRange(2) %}
+    {{knp_pagination_render(contacts, 'layouts/pagination.html.twig')}}
+  </div>
       <a href="{{ path('app_contact_create')}}" class="btn rounded btn-warning">Add Contact</a></td>
    </div>
   </div>

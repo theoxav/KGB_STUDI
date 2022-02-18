@@ -6,11 +6,12 @@ use App\Entity\Agent;
 use App\Form\AgentType;
 use App\Repository\AgentRepository;
 use Doctrine\ORM\EntityManagerInterface;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\RedirectResponse;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 #[Route('/agent')]
@@ -18,9 +19,14 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class AgentController extends AbstractController
 {
     #[Route('/', name: 'app_agent')]
-    public function index(AgentRepository $agentRepo): Response
+    public function index(AgentRepository $agentRepo, PaginatorInterface $paginator, Request $request): Response
     {
-        $agents = $agentRepo->findAll();
+        $data = $agentRepo->findAll();
+        $agents = $paginator->paginate(
+            $data,
+            $request->query->getInt('page',1),
+            3
+        );
 
         return $this->render('agent/index.html.twig',[
             'agents' => $agents

@@ -22,9 +22,12 @@
         <td><a href="{{ path('app_country_show', {id: country.id})}}"<i class="btn btn-dark fa-solid fa-plus rounded"></i></a></td>
         </tr>
     {% endfor %}
-    </tbody>
-       
+    </tbody>    
     </table>
+    <div class="d-flex justify-content-center">
+    {% do countries.setPageRange(2) %}
+    {{knp_pagination_render(countries, 'layouts/pagination.html.twig')}}
+  </div>
       <a href="{{ path('app_country_create')}}" class="btn rounded btn-info">Add Country</a></td>
    </div>
   </div>

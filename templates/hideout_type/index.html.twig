@@ -25,6 +25,10 @@
     </tbody>
        
     </table>
+    <div class="d-flex justify-content-center">
+    {% do hideouts_type.setPageRange(2) %}
+    {{knp_pagination_render(hideouts_type, 'layouts/pagination.html.twig')}}
+  </div>
       <a href="{{ path('app_hideout_type_create')}}" class="btn rounded btn-info">Add Types</a></td>
    </div>
   </div>

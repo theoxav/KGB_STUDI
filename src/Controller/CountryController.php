@@ -6,6 +6,7 @@ use App\Entity\Country;
 use App\Form\CountryType;
 use App\Repository\CountryRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -18,10 +19,15 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class CountryController extends AbstractController
 {
     #[Route('/', name: 'app_country')]
-    public function index(CountryRepository $countryRepo): Response
+    public function index(CountryRepository $countryRepo, PaginatorInterface $paginator, Request $request): Response
     {
-        $countries = $countryRepo->findBy([],['name' => 'ASC']);
-
+        $data =  $countryRepo->findBy([],['name' => 'ASC']);
+        $countries = $paginator->paginate(
+            $data,
+            $request->query->getInt('page',1),
+            3
+        );
+        
         return $this->render('country/index.html.twig',[
             'countries' => $countries
         ]);
