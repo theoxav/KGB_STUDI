@@ -49,6 +49,8 @@ class SkillController extends AbstractController
             $em->persist($skill);
             $em->flush();
 
+            $this->addFlash('success', 'Skill successfully created'  );
+
             return $this->redirectToRoute('app_skill');
         }
         return $this->renderForm('skill/create.html.twig',[
@@ -69,6 +71,8 @@ class SkillController extends AbstractController
     
             $em->flush();
 
+            $this->addFlash('success', 'Skill successfully updated'  );
+
             return $this->redirectToRoute('app_skill');
         }
         return $this->renderForm('skill/edit.html.twig',[
@@ -85,6 +89,8 @@ class SkillController extends AbstractController
 
         $em->remove($skill);
         $em->flush();
+
+        $this->addFlash('success', 'Skill successfully deleted'  );
 
         return $this->redirectToRoute('app_skill');
         

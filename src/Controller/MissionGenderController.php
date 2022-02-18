@@ -49,6 +49,8 @@ class MissionGenderController extends AbstractController
             $em->persist($missionGender);
             $em->flush();
 
+            $this->addFlash('success', 'Mission Type successfully created'  );
+
             return $this->redirectToRoute('app_mission_gender');
         }
         return $this->renderForm('mission_gender/create.html.twig',[
@@ -69,6 +71,8 @@ class MissionGenderController extends AbstractController
     
             $em->flush();
 
+            $this->addFlash('success', 'Mission Type successfully updated'  );
+
             return $this->redirectToRoute('app_mission_gender');
         }
         return $this->renderForm('mission_gender/edit.html.twig',[
@@ -85,6 +89,8 @@ class MissionGenderController extends AbstractController
 
         $em->remove($missionGender);
         $em->flush();
+
+        $this->addFlash('success', 'Mission Type successfully deleted'  );
 
         return $this->redirectToRoute('app_mission_gender');
         

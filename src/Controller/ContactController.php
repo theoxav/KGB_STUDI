@@ -49,6 +49,9 @@ class ContactController extends AbstractController
             $em->persist($contact);
             $em->flush();
 
+            $this->addFlash('success', 'Contact successfully created'  );
+
+
             return $this->redirectToRoute('app_contact');
         }
         return $this->render('contact/create.html.twig',[
@@ -69,6 +72,8 @@ class ContactController extends AbstractController
     
             $em->flush();
 
+            $this->addFlash('success', 'Contact successfully updated'  );
+
             return $this->redirectToRoute('app_contact');
         }
         return $this->renderForm('contact/edit.html.twig',[
@@ -85,6 +90,8 @@ class ContactController extends AbstractController
 
         $em->remove($contact);
         $em->flush();
+
+        $this->addFlash('success', 'Contact successfully deleted'  );
 
         return $this->redirectToRoute('app_contact');
         

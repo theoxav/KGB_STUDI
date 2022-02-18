@@ -49,6 +49,8 @@ class CountryController extends AbstractController
             $em->persist($country);
             $em->flush();
 
+            $this->addFlash('success', 'Country successfully created'  );
+
             return $this->redirectToRoute('app_country');
         }
         return $this->renderForm('country/create.html.twig',[
@@ -69,6 +71,8 @@ class CountryController extends AbstractController
     
             $em->flush();
 
+            $this->addFlash('success', 'Country successfully updated'  );
+
             return $this->redirectToRoute('app_country');
         }
         return $this->renderForm('country/edit.html.twig',[
@@ -85,6 +89,8 @@ class CountryController extends AbstractController
 
         $em->remove($country);
         $em->flush();
+
+        $this->addFlash('success', 'Country successfully deleted'  );
 
         return $this->redirectToRoute('app_country');
         

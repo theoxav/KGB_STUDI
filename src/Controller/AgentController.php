@@ -49,6 +49,8 @@ class AgentController extends AbstractController
             $em->persist($agent);
             $em->flush();
 
+            $this->addFlash('success', 'Agent successfully created'  );
+           
             return $this->redirectToRoute('app_agent');
         }
         return $this->render('agent/create.html.twig',[
@@ -68,7 +70,9 @@ class AgentController extends AbstractController
         if($form->isSubmitted() && $form->isValid()) {
     
             $em->flush();
-
+           
+            $this->addFlash('success', 'Agent successfully updated'  );
+            
             return $this->redirectToRoute('app_agent');
         }
         return $this->render('agent/edit.html.twig',[
@@ -85,6 +89,9 @@ class AgentController extends AbstractController
 
         $em->remove($agent);
         $em->flush();
+
+        $this->addFlash('success', 'Agent successfully deleted'  );
+
 
         return $this->redirectToRoute('app_agent');
         

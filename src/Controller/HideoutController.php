@@ -50,6 +50,8 @@ class HideoutController extends AbstractController
             $em->persist($hideout);
             $em->flush();
 
+            $this->addFlash('success', 'Hideout successfully created'  );
+
             return $this->redirectToRoute('app_hideout');
         }
         return $this->renderForm('hideout/create.html.twig',[
@@ -70,6 +72,8 @@ class HideoutController extends AbstractController
     
             $em->flush();
 
+            $this->addFlash('success', 'Hideout successfully updated'  );
+
             return $this->redirectToRoute('app_hideout');
         }
         return $this->renderForm('hideout/edit.html.twig',[
@@ -86,6 +90,8 @@ class HideoutController extends AbstractController
 
         $em->remove($hideout);
         $em->flush();
+
+        $this->addFlash('success', 'Hideout successfully deleted'  );
 
         return $this->redirectToRoute('app_hideout');
         

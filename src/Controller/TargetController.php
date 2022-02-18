@@ -49,6 +49,8 @@ class TargetController extends AbstractController
             $em->persist($target);
             $em->flush();
 
+            $this->addFlash('success', 'Target successfully created'  );
+
             return $this->redirectToRoute('app_target');
         }
         return $this->render('target/create.html.twig',[
@@ -69,6 +71,8 @@ class TargetController extends AbstractController
     
             $em->flush();
 
+            $this->addFlash('success', 'Target successfully updated'  );
+
             return $this->redirectToRoute('app_target');
         }
         return $this->renderForm('target/edit.html.twig',[
@@ -85,6 +89,8 @@ class TargetController extends AbstractController
 
         $em->remove($target);
         $em->flush();
+
+        $this->addFlash('success', 'Target successfully deleted'  );
 
         return $this->redirectToRoute('app_target');
         

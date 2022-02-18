@@ -45,15 +45,20 @@ class MissionController extends AbstractController
         $form->handleRequest($request);
 
         if($form->isSubmitted() && $form->isValid()) {
-           if(!$mission->skillsAgentsIsValid() || !$mission->nationalityIsValid() || !$mission->hideoutIsValid() || !$mission->contactIsValid()){
-          dd('erreur');
+           if(!$mission->skillsAgentsIsValid()){
+              
+            $this->addFlash('error', 'une erreur est survenue');
+           
         }
-           $em->persist($mission);
-           $em->flush();
-        
-            return $this->redirectToRoute('app_mission');
+          $em->persist($mission);
+          $em->flush();
+
+          $this->addFlash('success', 'Mission successfully created'  );
+
+          return $this->redirectToRoute('app_mission');
+          
         }
-        return $this->render('mission/create.html.twig',[
+          return $this->render('mission/create.html.twig',[
             'form'=>$form->createView()
         ]);
     }
@@ -72,6 +77,8 @@ class MissionController extends AbstractController
     
             $em->flush();
 
+            $this->addFlash('success', 'Mission successfully updated'  );
+
             return $this->redirectToRoute('app_mission');
         }
         return $this->render('mission/edit.html.twig',[
@@ -89,6 +96,8 @@ class MissionController extends AbstractController
            
         $em->remove($mission);
         $em->flush();
+
+        $this->addFlash('success', 'Mission successfully deleted'  );
 
         return $this->redirectToRoute('app_mission');
         
