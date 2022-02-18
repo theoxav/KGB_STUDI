@@ -13,7 +13,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 
 #[ORM\Entity(repositoryClass: MissionRepository::class)]
-#[UniqueEntity(fields:['title'])]
+#[UniqueEntity(fields:['title', 'codeName'])]
 class Mission
 {
     #[ORM\Id]
@@ -46,9 +46,12 @@ class Mission
     private $hideout;
 
     #[ORM\Column(type: 'date')]
+    #[Assert\Type("DateTimeInterface")]
     private $startDate;
 
     #[ORM\Column(type: 'date')]
+    #[Assert\Type("DateTimeInterface")]
+    #[Assert\GreaterThanOrEqual(propertyPath:'startDate')]
     private $endDate;
 
     #[ORM\ManyToMany(targetEntity: Agent::class, inversedBy: 'missions')]
@@ -292,7 +295,7 @@ class Mission
         $dataContact = $this->contacts;
 
         foreach($dataContact as $contact) {
-            if($dataCountry != $contact->getNationality())
+            if($dataCountry->getName() != $contact->getNationality())
             {
                 return false;
             }

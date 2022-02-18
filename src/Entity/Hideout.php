@@ -7,11 +7,13 @@ use Doctrine\ORM\Mapping as ORM;
 use App\Entity\Traits\Timestampable;
 use App\Repository\HideoutRepository;
 use Doctrine\Common\Collections\Collection;
-use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 #[ORM\Entity(repositoryClass: HideoutRepository::class)]
 #[ORM\HasLifecycleCallbacks]
+#[UniqueEntity(fields:['address'])]
 class Hideout
 {
     use Timestampable;

@@ -2,15 +2,17 @@
 
 namespace App\Entity;
 
-use App\Entity\Traits\Timestampable;
-use App\Repository\AgentRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\AgentRepository;
+use App\Entity\Traits\Timestampable;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 #[ORM\Entity(repositoryClass: AgentRepository::class)]
 #[ORM\HasLifecycleCallbacks]
+#[UniqueEntity(fields:['codeName'])]
 class Agent extends Person
 {
     use Timestampable;

@@ -51,18 +51,28 @@ class MissionController extends AbstractController
         $form->handleRequest($request);
 
         if($form->isSubmitted() && $form->isValid()) {
-           if(!$mission->skillsAgentsIsValid()){
-              
-            $this->addFlash('error', 'une erreur est survenue');
-           
-        }
-          $em->persist($mission);
-          $em->flush();
-
-          $this->addFlash('success', 'Mission successfully created'  );
-
-          return $this->redirectToRoute('app_mission');
+           if(!$mission->skillsAgentsIsValid()){ 
+            $this->addFlash('error', 'At least one of the agents must have the mission\' speciality'); 
           
+        } else if(!$mission->nationalityIsValid()) {
+            $this->addFlash('error', 'An Agent and a Target can\' have the same nationality'); 
+
+           } else if(!$mission->hideoutIsValid()) {
+            $this->addFlash('error', 'The Hideout must be in the same country as the mission'); 
+
+           } else if(!$mission->contactIsValid()) {
+              $this->addFlash('error', 'The contact must have the nationality of the country in wich the mission is located'); 
+
+           } else {
+
+               $em->persist($mission);
+               $em->flush(); 
+
+               $this->addFlash('success', 'Mission successfully created'  );
+              
+               return $this->redirectToRoute('app_mission');
+
+           }
         }
           return $this->render('mission/create.html.twig',[
             'form'=>$form->createView()
@@ -80,13 +90,28 @@ class MissionController extends AbstractController
         $form->handleRequest($request);
 
         if($form->isSubmitted() && $form->isValid()) {
+            
+            if(!$mission->skillsAgentsIsValid()){ 
+                $this->addFlash('error', 'At least one of the agents must have the mission\' speciality'); 
+              
+            } else if(!$mission->nationalityIsValid()) {
+                $this->addFlash('error', 'An Agent and a Target can\' have the same nationality'); 
     
-            $em->flush();
+               } else if(!$mission->hideoutIsValid()) {
+                  $this->addFlash('error', 'The Hideout must be in the same country as the mission'); 
+    
+               } else if(!$mission->contactIsValid()) {
+                   $this->addFlash('error', 'The contact must have the nationality of the country in wich the mission is located');
+             
+               } else {
+                   
+                   $em->flush(); 
 
-            $this->addFlash('success', 'Mission successfully updated'  );
-
-            return $this->redirectToRoute('app_mission');
+                   $this->addFlash('success', 'Mission successfully created'  );
+                   return $this->redirectToRoute('app_mission');
+               }
         }
+
         return $this->render('mission/edit.html.twig',[
             'mission' => $mission,
             'form'=>$form->createView()

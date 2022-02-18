@@ -26,6 +26,7 @@ class Person
 
     #[ORM\Column(type: 'date')]
     #[Assert\NotBlank()]
+    #[Assert\Type('date')]
     protected $birthday;
     
     #[ORM\Column(type: 'string', length: 50)]
