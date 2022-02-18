@@ -29,10 +29,12 @@
     </div>
   </div>
 
+  
   {{form_row(form.startDate)}}
   {{form_row(form.endDate)}}
   
   {{form_row(form.description)}}
+  {{form_row(form.status)}}   
   
   
      <input type="submit" value="{{ submitButtonText|default('Add Mission')}}" class="mt-4 btn btn-info w-100" formnovalidate />
