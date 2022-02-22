@@ -31,8 +31,11 @@
           <a class="nav-link" href="{{ path('app_hideout')}}">Hideouts</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="{{ path('app_logout')}}">Logout</a>
+          <a class="nav-link" href="#" onclick="event.preventDefault(); document.getElementById('js-logout-form').submit();">Logout</a>
         </li>   
+        <form id="js-logout-form" action="{{path('app_logout')}}" method="post" style="display:none">
+          <input type="hidden" name="_csrf_token" value="{{csrf_token('logout')}}">
+        </form>
         {% endif %}
       </ul>
     </div>
