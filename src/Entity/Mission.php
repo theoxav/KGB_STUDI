@@ -46,11 +46,9 @@ class Mission
     private $hideout;
 
     #[ORM\Column(type: 'date')]
-    #[Assert\Type("DateTimeInterface")]
     private $startDate;
 
     #[ORM\Column(type: 'date')]
-    #[Assert\Type("DateTimeInterface")]
     #[Assert\GreaterThanOrEqual(propertyPath:'startDate')]
     private $endDate;
 
